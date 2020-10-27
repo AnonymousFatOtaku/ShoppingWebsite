@@ -67,4 +67,21 @@ const deleteUser = async (username) => {
   })
 }
 
-module.exports = {getAllUsers, addUser, updateUser, deleteUser}
+// 登录
+const login = async (username, password) => {
+  let sql = 'SELECT username,phone,email,login_time FROM t_user WHERE is_delete = 0 AND username = ? AND password = MD5(?)'
+  let sqlParams = [password, username]
+  return new Promise((resolve, reject) => {
+    db.connection.query(sql, sqlParams, (error, result) => {
+      if (error) {
+        console.error('登录异常')
+        reject(error)
+      } else {
+        console.error('登录正常')
+        resolve(result)
+      }
+    })
+  })
+}
+
+module.exports = {getAllUsers, addUser, updateUser, deleteUser, login}

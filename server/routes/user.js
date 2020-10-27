@@ -31,4 +31,11 @@ router.post('/deleteUser', async function (req, res) {
   res.send(data);
 })
 
+// 登录
+router.post('/login', async function (req, res) {
+  const {username, password} = req.body
+  const data = await userService.login(username, password);
+  res.send(data);
+})
+
 module.exports = router;
