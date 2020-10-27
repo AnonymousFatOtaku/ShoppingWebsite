@@ -15,3 +15,5 @@ connection.connect((error) => {
   if (error) throw error;
   console.log('连接mysql成功');
 });
+
+module.exports = {connection}
